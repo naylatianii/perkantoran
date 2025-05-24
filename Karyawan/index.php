@@ -1,16 +1,16 @@
 <?php
-include("koneksi.php");
+include("../koneksi.php");
 
 $query = 'SELECT * FROM Karyawan;';
 $result = mysqli_query($koneksi, $query);
 
-include 'layouts/header.php';
+include '../layouts/header.php';
 ?>
 
 <section class="p-4 ml-5 mr-5 w-75">
     <div class="d-flex flex-row justify-content-between">
         <h2>Data Karyawan</h2>
-        <a type="button" class="btn btn-primary" onclick="tambahData()" data-toggle="modal" data-target="#exampleModal">+Tambah</a>
+        <a href="tambah.php" class="btn btn-primary p-2">+Tambah</a>
     </div>
     <table class="table table-light mt-3">
         <thead>
@@ -47,34 +47,6 @@ include 'layouts/header.php';
         </tbody>
     </table>
 </section>
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <div class="form-group">
-                    <label for="Id_Karyawan">Id Karyawan</label>
-                    <input type="text" class="form-control" id="Id_Karyawan" name="Id_Karyawan" placeholder="Masukkan id Karyawan">
-                    <div class="invalid-feedback kategori-nama-ada inv-kategori-nama">
-                      &nbsp;
-                    </div>
-      </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
-
-
-<?php include 'layouts/footer.php'; ?>
+<?php include '../layouts/footer.php'; ?>
 
