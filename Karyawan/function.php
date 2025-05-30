@@ -8,9 +8,9 @@ function insertKaryawan($koneksi, $Nama_Lengkap, $Jenis_Kelamin, $TTL, $Jabatan,
     return mysqli_query($koneksi, $query);
 }
 
-function updateKlien($koneksi, $Id_Karyawan, $Nama_Lengkap, $Jenis_Kelamin, $TTL, $Jabatan, $No_Hp, $Email, $Tahun_Masuk, $Alamat) {
+function updateKaryawan($koneksi, $Id_Karyawan, $Nama_Lengkap, $Jenis_Kelamin, $TTL, $Jabatan, $No_Hp, $Email, $Tahun_Masuk, $Alamat) {
     $query = "UPDATE Karyawan 
-              SET Nama_Lengkap='$Nama_Lengkap', Jenis_Kelamin='$Jenis-Kelamin', 
+              SET Nama_Lengkap='$Nama_Lengkap', Jenis_Kelamin='$Jenis_Kelamin', 
                   TTL='$TTL', Jabatan='$Jabatan', No_Hp='$No_Hp', Email='$Email', Tahun_Masuk='$Tahun_Masuk', Alamat='$Alamat' 
               WHERE Id_Karyawan=$Id_Karyawan";
     return mysqli_query($koneksi, $query);
@@ -18,6 +18,7 @@ function updateKlien($koneksi, $Id_Karyawan, $Nama_Lengkap, $Jenis_Kelamin, $TTL
 
 function deleteKaryawan($koneksi, $Id_Karyawan) {
     $Id_Karyawan = (int)$Id_Karyawan;
+    $query = "DELETE FROM Karyawan WHERE Id_Karyawan = $Id_Karyawan";
     return mysqli_query($koneksi, $query);
 }
 
@@ -34,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'insert') {
     $Alamat = $_POST["Alamat"];
 
     $query = "INSERT INTO Karyawan (Id_Karyawan, Nama_Lengkap, Jenis_Kelamin, TTL, Jabatan, No_Hp, Email, Tahun_Masuk, Alamat) 
-              VALUES ('$Id_Karyawan', '$Nama_Lengkap', '$Jenis_Kelamin', '$TTL', '$Jabatan', '$No_Hp,', '$Email', '$Tahun_Masuk', '$Alamat')";
+              VALUES ('$Id_Karyawan', '$Nama_Lengkap', '$Jenis_Kelamin', '$TTL', '$Jabatan', '$No_Hp', '$Email', '$Tahun_Masuk', '$Alamat')";
 
     if (mysqli_query($koneksi, $query)) {
         header("Location: index.php");
@@ -70,11 +71,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action'] == 'delete') {
     $Id_Karyawan = $_GET["Id_Karyawan"] ?? null;
 
     if ($Id_Karyawan !== null) {
-        deleteKlien($koneksi, $Id_Karyawan);
-        header("Location: index.php");
-        exit;
-    } else {
-        echo "ID Karyawan tidak ditemukan!";
+        if (deleteKaryawan($koneksi, $Id_Karyawan)) {
+            header("Location: index.php");
+            exit;
+        } else {
+            echo "Data gagal dihapus! Error: " . mysqli_error($koneksi);
     }
+}
 }
 ?>
