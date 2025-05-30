@@ -9,9 +9,9 @@ if (!$Id_Inventaris) {
     exit;
 }
 
-$query = "SELECT * FROM Klien WHERE Id_Inventaris = $Id_Inventaris";
+$query = "SELECT * FROM Inventaris WHERE Id_Inventaris = $Id_Inventaris";
 $result = mysqli_query($koneksi, $query);
-$Klien = mysqli_fetch_assoc($result);
+$Inventaris = mysqli_fetch_assoc($result);
 
 if (!$Inventaris) {
     echo "Inventaris tidak ditemukan.";

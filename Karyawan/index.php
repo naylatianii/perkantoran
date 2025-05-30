@@ -1,10 +1,10 @@
 <?php
-include("koneksi.php");
+include("../koneksi.php");
 
 $query = 'SELECT * FROM Karyawan;';
 $result = mysqli_query($koneksi, $query);
 
-include 'layouts/header.php';
+include('../layouts/header.php');
 ?>
 
 <section class="p-4 ml-5 mr-5 w-75">
@@ -76,5 +76,5 @@ include 'layouts/header.php';
 
 
 
-<?php include 'layouts/footer.php'; ?>
+<?php include('../layouts/footer.php'); ?>
 

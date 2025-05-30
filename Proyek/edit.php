@@ -1,13 +1,29 @@
-<?php include("../koneksi.php"); ?>
+<?php 
+include('../layouts/header.php');
+include("../koneksi.php");
+
+$Id_Proyek = (int) $_GET['Id_Proyek'] ?? null;
+
+if (!$Id_Proyek) {
+    echo "ID Proyek tidak ditemukan.";
+    exit;
+}
+
+$query = "SELECT * FROM Proyek WHERE Id_Proyek = $Id_Proyek";
+$result = mysqli_query($koneksi, $query);
+$Proyek = mysqli_fetch_assoc($result);
+
+if (!$Proyek) {
+    echo "Proyek tidak ditemukan.";
+    exit;
+}
+?>
 
 <section class="p-4 ml-5 mr-5 w-50">
     <form action="function.php" method="POST">
-        <input type="hidden" name="action" value="insert">
+        <input type="hidden" name="action" value="edit">
+        <input type="hidden" name="Id_Proyek" value="<?= $Proyek['Id_Proyek'] ?>">
 
-        <div class="mb-3">
-            <label for="Id_Proyek" class="form-label">Id Proyek</label>
-            <input type="number" class="form-control" name="Id_Proyek" id="Id_Proyek" value="<?= htmlspecialchars($Proyek['Id_Proyek']) ?>" placeholder="Masukkan Id Proyek">
-        </div>
 
         <div class="mb-3">
             <label for="Id_Klien" class="form-label">Id Klien</label>
@@ -48,7 +64,7 @@
             <label for="Status" class="form-label">Status</label>
             <input type="Status" class="form-control" name="Status" id="Status" value="<?= htmlspecialchars($Proyek['Status']) ?>" placeholder="Masukkan Status">
         </div>
-
+        
         <div class="mb-3">
             <button type="submit" class="btn btn-primary">Simpan</button>
         </div>
