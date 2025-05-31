@@ -2,9 +2,9 @@
 include("../koneksi.php");
 
 // FUNGSI
-function insertDivisi($koneksi, $Id_Karyawan, $Id_Inventaris, $Nama_Divisi, $Kepala_Divisi, $Bidang, $Jumlah_Karyawan) {
-    $query = "INSERT INTO Divisi (Id_Karyawan, Id_Inventaris, Nama_Divisi, Kepala_Divisi, Bidang, Jumlah_Karyawan) 
-              VALUES ('$Id_Karyawan', '$Id_Inventaris', '$Nama_Divisi', '$Kepala_Divisi', '$Bidang', '$Jumlah_Karyawan')";
+function insertDivisi($koneksi, $Id_Divisi, $Id_Karyawan, $Id_Inventaris, $Nama_Divisi, $Kepala_Divisi, $Bidang, $Jumlah_Karyawan) {
+    $query = "INSERT INTO Divisi (Id_Divisi, Id_Karyawan, Id_Inventaris, Nama_Divisi, Kepala_Divisi, Bidang, Jumlah_Karyawan) 
+              VALUES ('$Id_Divisi', '$Id_Karyawan', '$Id_Inventaris', '$Nama_Divisi', '$Kepala_Divisi', '$Bidang', '$Jumlah_Karyawan')";
     return mysqli_query($koneksi, $query);
 }
 
@@ -29,6 +29,7 @@ function deleteDivisi($koneksi, $Id_Divisi) {
 
 // INSERT
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'insert') {
+    $Id_Divisi = $_POST["Id_Divisi"];
     $Id_Karyawan = $_POST["Id_Karyawan"];
     $Id_Inventaris = $_POST["Id_Inventaris"];
     $Nama_Divisi = $_POST["Nama_Divisi"];
@@ -36,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'insert') {
     $Bidang = $_POST["Bidang"];
     $Jumlah_Karyawan = $_POST["Jumlah_Karyawan"];
 
-    if (insertDivisi($koneksi, $Id_Karyawan, $Id_Inventaris, $Nama_Divisi, $Kepala_Divisi, $Bidang, $Jumlah_Karyawan)) {
+    if (insertDivisi($koneksi, $Id_Divisi, $Id_Karyawan, $Id_Inventaris, $Nama_Divisi, $Kepala_Divisi, $Bidang, $Jumlah_Karyawan)) {
         header("Location: index.php");
         exit;
     } else {
