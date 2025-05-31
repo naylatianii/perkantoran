@@ -35,11 +35,6 @@
         </div>
 
         <div class="mb-3">
-            <label for="Total_Gaji" class="form-label">Total Gaji</label>
-            <input type="number" class="form-control" name="Total_Gaji" id="Total_Gaji" value="<?= htmlspecialchars($Gaji['Total_Gaji']) ?>" placeholder="Masukkan Total Gaji">
-        </div>
-
-        <div class="mb-3">
             <button type="submit" class="btn btn-primary">Simpan</button>
         </div>
     </form>
