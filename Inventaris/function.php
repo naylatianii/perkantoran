@@ -2,45 +2,72 @@
 include("../koneksi.php");
 
 // FUNGSI
-function insertInventaris($koneksi, $Nama_Barang, $Jumlah, $Status, $Lokasi) {
-    $query = "INSERT INTO Inventaris (Nama_Barang, Jumlah, Status, Lokasi) VALUES ('$Nama_Barang', '$Jumlah', '$Status', '$Lokasi')";
+function insertInventaris($koneksi, $id_Inventaris, $Nama_Barang, $Jumlah, $Status, $Lokasi) {
+    $stmt = $koneksi->prepare("INSERT INTO Inventaris (id_Inventaris, Nama_Barang, Jumlah, Status, Lokasi) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("isiss", $id_Inventaris, $Nama_Barang, $Jumlah, $Status, $Lokasi);
+    $execute = $stmt->execute();
+    $stmt->close();
+    return $execute;
+}
+
+function updateInventaris($koneksi, $id_Inventaris, $Nama_Barang, $Jumlah, $Status, $Lokasi) {
+    $query = "UPDATE Inventaris SET Nama_Barang='$Nama_Barang', Jumlah='$Jumlah', Status='$Status', Lokasi='$Lokasi' WHERE id_Inventaris=$id_Inventaris";
     return mysqli_query($koneksi, $query);
 }
 
-function updateInventaris($koneksi, $Id_Inventaris, $Nama_Barang, $Jumlah, $Status, $Lokasi) {
-    $query = "UPDATE Inventaris SET Nama_Barang='$Nama_Barang', Jumlah='$Jumlah', Status='$Status', Lokasi='$Lokasi', WHERE Id_Klien=$Id_Klien";
-    return mysqli_query($koneksi, $query);
-}
+function deleteInventaris($koneksi, $id_Inventaris) {
+    $id_Inventaris = (int)$id_Inventaris;
 
-function deleteInventaris($koneksi, $Id_Inventaris) {
-    $query = "DELETE FROM Inventaris WHERE  Id_Inventaris=$Id_Inventaris";
-    return mysqli_query($koneksi, $query);
+    // Cek apakah data masih digunakan di tabel divisi
+    $cek = $koneksi->prepare("SELECT 1 FROM divisi WHERE Id_Inventaris = ?");
+    $cek->bind_param("i", $id_Inventaris);
+    $cek->execute();
+    $result = $cek->get_result();
+
+    if ($result->num_rows > 0) {
+        $cek->close();
+        $result->close();
+        echo "Maaf, tidak bisa dihapus! Data inventaris masih digunakan di tabel divisi.";
+        exit;
+    }
+
+    $cek->close();
+    $result->close();
+
+    // Jika aman, lanjut hapus
+    $stmt = $koneksi->prepare("DELETE FROM Inventaris WHERE id_Inventaris = ?");
+    $stmt->bind_param("i", $id_Inventaris);
+    $execute = $stmt->execute();
+    $stmt->close();
+
+    return $execute;
 }
 
 // INSERT
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'insert') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['action']) && $_GET['action'] == 'insert') {
+    $id_Inventaris = (int)$_POST["id_Inventaris"];  
     $Nama_Barang = $_POST["Nama_Barang"];
-    $Jumlah = $_POST["Jumlah"];
+    $Jumlah = (int)$_POST["Jumlah"];
     $Status = $_POST["Status"];
     $Lokasi = $_POST["Lokasi"];
 
-    if (insertInventaris($koneksi, $Nama_Barang, $Jumlah, $Status, $Lokasi)) {
+    if (insertInventaris($koneksi, $id_Inventaris, $Nama_Barang, $Jumlah, $Status, $Lokasi)) {
         header("Location: index.php");
         exit;
     } else {
-        echo "Data gagal disimpan";
+        echo "Data gagal disimpan: " . $koneksi->error;
     }
 }
 
 // EDIT
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'edit') {
-    $Id_Inventaris = $_POST["Id_Inventaris"];
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'edit') {
+    $id_Inventaris = $_POST["id_Inventaris"];
     $Nama_Barang = $_POST["Nama_Barang"];
     $Jumlah = $_POST["Jumlah"];
     $Status = $_POST["Status"];
     $Lokasi = $_POST["Lokasi"];
 
-    if (updateInventaris($koneksi, $Id_Inventaris, $Nama_Barang, $Jumlah, $Status, $Lokasi)) {
+    if (updateInventaris($koneksi, $id_Inventaris, $Nama_Barang, $Jumlah, $Status, $Lokasi)) {
         header("Location: index.php");
         exit;
     } else {
@@ -49,10 +76,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['action'] == 'edit') {
 }
 
 // DELETE
-if ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['action'] == 'delete') {
-    $id = $_GET["Id_Inventaris"];
+if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['action']) && $_GET['action'] == 'delete') {
+    $id = $_GET["id_Inventaris"];
 
-    if (deleteKlien($koneksi, $Id_Inventaris)) {
+    if (deleteInventaris($koneksi, $id)) {
         header("Location: index.php");
         exit;
     } else {
