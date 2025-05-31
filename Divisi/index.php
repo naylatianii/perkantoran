@@ -22,6 +22,7 @@ include('../layouts/header.php');
                 <th scope="col">Kepala Divisi</th>
                 <th scope="col">Bidang</th>
                 <th scope="col">Jumlah Karyawan</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
