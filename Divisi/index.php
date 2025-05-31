@@ -21,7 +21,7 @@ include('../layouts/header.php');
                 <th scope="col">Nama Divisi</th>
                 <th scope="col">Kepala Divisi</th>
                 <th scope="col">Bidang</th>
-                <th scope="col">Jumlah Karyawan/th>
+                <th scope="col">Jumlah Karyawan</th>
             </tr>
         </thead>
         <tbody>
@@ -53,7 +53,6 @@ include('../layouts/header.php');
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </button>
       </div>
-      <form action="function.php" method="POST">
   <input type="hidden" name="action" value="insert">
 
   <div class="modal-body">
