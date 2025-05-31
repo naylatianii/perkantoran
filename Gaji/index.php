@@ -85,10 +85,6 @@ include('../layouts/header.php');
                 <input type="number" class="form-control" id="Bonus" name="Bonus" placeholder="Masukkan Bonus" required>
             </div>
 
-            <div class="mb-3">
-                <label for="Total_Gaji" class="form-label">Total Gaji</label>
-                <input type="number" class="form-control" id="Total_Gaji" name="Total_Gaji" placeholder="Masukkan Total Gaji" required>
-            </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
