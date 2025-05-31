@@ -5,6 +5,7 @@ $query = 'SELECT * FROM Inventaris;';
 $result = mysqli_query($koneksi, $query);
 
 include('../layouts/header.php');
+include('../back_to_dashboard.php');
 ?>
 
 <section class="p-4 ml-5 mr-5 w-75">
