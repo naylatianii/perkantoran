@@ -24,6 +24,7 @@ include('../layouts/header.php');
                 <th scope="col">Email</th>
                 <th scope="col">Tahun Masuk</th>
                 <th scope="col">Alamat</th>
+                <th>Aksi</th> 
             </tr>
         </thead>
         <tbody>
@@ -37,8 +38,7 @@ include('../layouts/header.php');
                     <td><?= $Karyawan->No_Hp ?></td>
                     <td><?= $Karyawan->Email ?></td>
                     <td><?= $Karyawan->Tahun_Masuk ?></td>
-                    <td><?= $Karyawan->Alamat ?></td>
-                    <th>Aksi</th>                   
+                    <td><?= $Karyawan->Alamat ?></td>                  
                     <td>
                         <a href="edit.php?Id_Karyawan=<?= $Karyawan->Id_Karyawan ?>" class="btn btn-warning btn-sm">Edit</a>
                         <a href="function.php?action=delete&Id_Karyawan=<?= $Karyawan->Id_Karyawan ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
