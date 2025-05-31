@@ -29,11 +29,11 @@ include('../layouts/header.php');
                 <tr>
                     <td><?= $Divisi->Id_Divisi ?></td>
                     <td><?= $Divisi->Id_Karyawan?></td>
-                    <td><?= $Divisi->Id_Inventaris ?></td>
-                    <td><?= $Divisi->Nama Divisi ?></td>
-                    <td><?= $Divisi->Kepala Divisi ?></td>
-                    <td><?= $Divisi->Bidang ?></td>
-                    <td><?= $Divisi->Jumlah_Karyawan ?></td>                  
+                    <td><?= $Divisi->Id_Inventaris?></td>
+                    <td><?= $Divisi->Nama_Divisi?></td>
+                    <td><?= $Divisi->Kepala_Divisi?></td>
+                    <td><?= $Divisi->Bidang?></td>
+                    <td><?= $Divisi->Jumlah_Karyawan?></td>                  
                     <td>
                         <a href="edit.php?Id_Divisi=<?= $Divisi->Id_Divisi ?>" class="btn btn-warning btn-sm">Edit</a>
                         <a href="function.php?action=delete&Id_Divisi=<?= $Divisi->Id_Divisi ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
