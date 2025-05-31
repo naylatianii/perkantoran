@@ -31,7 +31,7 @@
 
          <div class="mb-3">
             <label for="No_Hp" class="form-label">Nomor Hp</label>
-            <input type="number" class="form-control" name="No_Hp" id="No_Hp">
+            <input type="text" class="form-control" name="No_Hp" id="No_Hp">
         </div>
          <div class="mb-3">
             <label for="Email" class="form-label">Email</label>
