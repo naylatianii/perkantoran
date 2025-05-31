@@ -101,9 +101,8 @@ function deleteGaji($koneksi, $Id_Gaji) {
         echo "Gagal hapus data Gaji: " . mysqli_error($koneksi);
         exit;
     }
-
+    
     // Tidak menghapus data keuangan_perkantoran
-
     return true;
 }
 
