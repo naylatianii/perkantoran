@@ -1,7 +1,7 @@
 <?php
 include("../koneksi.php");
 
-$query = 'SELECT * FROM Klien;';
+$query = "SELECT * FROM Klien ORDER BY Id_Klien ASC";
 $result = mysqli_query($koneksi, $query);
 
 include('../layouts/header.php');

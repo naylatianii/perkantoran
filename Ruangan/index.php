@@ -16,7 +16,6 @@ include('../layouts/header.php');
         <thead>
             <tr>
                 <th scope="col">ID Ruangan</th>
-                <th scope="col">ID Meeting</th>
                 <th scope="col">ID Inventaris</th>
                 <th scope="col">Nama Ruangan</th>
                 <th scope="col">Kapasitas</th>
@@ -30,7 +29,6 @@ include('../layouts/header.php');
             <?php while ($Ruangan = mysqli_fetch_object($result)) { ?>
                 <tr>
                     <td><?= htmlspecialchars($Ruangan->Id_Ruangan) ?></td>
-                    <td><?= htmlspecialchars($Ruangan->Id_Meeting) ?></td>
                     <td><?= htmlspecialchars($Ruangan->Id_Inventaris) ?></td>
                     <td><?= htmlspecialchars($Ruangan->Nama_Ruangan) ?></td>
                     <td><?= htmlspecialchars($Ruangan->Kapasitas) ?></td>
@@ -60,10 +58,6 @@ include('../layouts/header.php');
           <div class="mb-3">
             <label for="Id_Ruangan" class="form-label">ID Ruangan</label>
             <input type="text" class="form-control" id="Id_Ruangan" name="Id_Ruangan" placeholder="Masukkan ID Ruangan" required>
-          </div>
-          <div class="mb-3">
-            <label for="Id_Meeting" class="form-label">ID Meeting</label>
-            <input type="text" class="form-control" id="Id_Meeting" name="Id_Meeting" placeholder="Masukkan ID Meeting" required>
           </div>
           <div class="mb-3">
             <label for="Id_Inventaris" class="form-label">ID Inventaris</label>

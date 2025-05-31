@@ -2,12 +2,12 @@
 include("../koneksi.php");
 
 // FUNGSI
-function insertRuangan($koneksi, $Id_Meeting, $Id_Inventaris, $Nama_Ruangan, $Kapasitas, $Lokasi, $Fasilitas, $Status) {
+function insertRuangan($koneksi, $Id_Inventaris, $Nama_Ruangan, $Kapasitas, $Lokasi, $Fasilitas, $Status) {
     $query = "INSERT INTO Klien (Nama_Klien, Nama_Perusahaan, Jam_Mulai, Jam_Selesai, Tanggal_Kunjungan) VALUES ('$Nama_Klien', '$Nama_Perusahaan', '$Jam_Mulai', '$Jam_Selesai', '$Tanggal_Kunjungan')";
     return mysqli_query($koneksi, $query);
 }
 
-function updateKlien($koneksi, $Id_Ruangan, $Id_Meeting, $Id_Inventaris, $Nama_Ruangan, $Kapasitas, $Lokasi, $Fasilitas, $Status) {
+function updateKlien($koneksi, $Id_Ruangan, $Id_Inventaris, $Nama_Ruangan, $Kapasitas, $Lokasi, $Fasilitas, $Status) {
     $query = "UPDATE Klien SET Nama_Klien='$Nama_Klien', Nama_Perusahaan='$Nama_Perusahaan', Jam_Mulai='$Jam_Mulai', Jam_Selesai='$Jam_Selesai', Tanggal_Kunjungan='$Tanggal_Kunjungan' WHERE Id_Klien=$Id_Klien";
     return mysqli_query($koneksi, $query);
 }
