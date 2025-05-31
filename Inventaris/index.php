@@ -26,14 +26,14 @@ include('../layouts/header.php');
         <tbody>
             <?php while ($Inventaris = mysqli_fetch_object($result)) { ?>
                 <tr>
-                    <td><?= htmlspecialchars($Inventaris->Id_Inventaris) ?></td>
+                    <td><?= htmlspecialchars($Inventaris->id_Inventaris) ?></td>
                     <td><?= htmlspecialchars($Inventaris->Nama_Barang) ?></td>
                     <td><?= htmlspecialchars($Inventaris->Jumlah) ?></td>
                     <td><?= htmlspecialchars($Inventaris->Status) ?></td>
                     <td><?= htmlspecialchars($Inventaris->Lokasi) ?></td>
                     <td>
-                        <a href="edit.php?Id_Inventaris=<?= $Inventaris->Id_Inventaris ?>" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="function.php?action=delete&Id_Inventaris=<?= $Inventaris->Id_Inventaris ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
+                        <a href="edit.php?id_Inventaris=<?= $Inventaris->id_Inventaris ?>" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="function.php?action=delete&id_Inventaris=<?= $Inventaris->id_Inventaris ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
                     </td>
                 </tr>
             <?php } ?>
@@ -52,8 +52,8 @@ include('../layouts/header.php');
         </div>
         <div class="modal-body">
             <div class="mb-3">
-                <label for="Id_Inventaris" class="form-label">ID Inventaris</label>
-                <input type="text" class="form-control" id="Id_Inventaris" name="Id_Inventaris" placeholder="Masukkan ID Inventaris" required>
+                <label for="id_Inventaris" class="form-label">ID Inventaris</label>
+                <input type="text" class="form-control" id="id_Inventaris" name="id_Inventaris" placeholder="Masukkan ID Inventaris" required>
             </div>
             <div class="mb-3">
                 <label for="Nama_Barang" class="form-label">Nama Barang</label>

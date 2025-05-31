@@ -2,9 +2,8 @@
 include("../koneksi.php");
 
 function insertKeuangan($koneksi, $data) {
-    $query = "INSERT INTO Keuangan_Perkantoran (Id_Keuangan, Id_Divisi, Jenis_Transaksi, Saldo, Keterangan, Tanggal)
+    $query = "INSERT INTO Keuangan_Perkantoran (Id_Divisi, Jenis_Transaksi, Saldo, Keterangan, Tanggal)
               VALUES (
-                  '{$data['Id_Keuangan']}',
                   '{$data['Id_Divisi']}',
                   '{$data['Jenis_Transaksi']}',
                   '{$data['Saldo']}',
@@ -53,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['action']) && $_GET['act
 }
 
 // EDIT
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_GET['action']) && $_GET['action'] == 'edit') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['action']) && $_POST['action'] == 'edit') {
     $data = $_POST;
     if (updateKeuangan($koneksi, $data)) {
         header("Location: index.php");
