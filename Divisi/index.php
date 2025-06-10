@@ -36,9 +36,11 @@ include('../back_to_dashboard.php');
                     <td><?= $Divisi->Kepala_Divisi?></td>
                     <td><?= $Divisi->Bidang?></td>
                     <td><?= $Divisi->Jumlah_Karyawan?></td>                  
-                    <td>
+                    <td style="white-space: nowrap;">
+                      <div style="display: flex; gap: 5px;">
                         <a href="edit.php?Id_Divisi=<?= $Divisi->Id_Divisi ?>" class="btn btn-warning btn-sm">Edit</a>
                         <a href="function.php?action=delete&Id_Divisi=<?= $Divisi->Id_Divisi ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
+                      </div>
                     </td>
                 </tr>
             <?php } ?>

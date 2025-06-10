@@ -41,9 +41,11 @@ include('../back_to_dashboard.php');
                     <td><?= $Karyawan->Email ?></td>
                     <td><?= $Karyawan->Tahun_Masuk ?></td>
                     <td><?= $Karyawan->Alamat ?></td>                  
-                    <td>
+                    <td style="white-space: nowrap;">
+                      <div style="display: flex; gap: 5px;">
                         <a href="edit.php?Id_Karyawan=<?= $Karyawan->Id_Karyawan ?>" class="btn btn-warning btn-sm">Edit</a>
                         <a href="function.php?action=delete&Id_Karyawan=<?= $Karyawan->Id_Karyawan ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
+                      </div>
                     </td>
                 </tr>
             <?php } ?>
